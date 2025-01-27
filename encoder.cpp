@@ -32,7 +32,7 @@ void Encoder::_on_rotate(){
   if(enc_A == last_A) return; // Выход не менялся. Вращения не было
   flag = !flag; // Кроме первого шага нас интересует каждый второй импульс
   if(flag) {
-     int8_t dir = (digitalRead(_pinB) == last_A) ? 1 : -1;//B == last_A, т.е B != A - значит против часовой, иначе по часовой 
+     int8_t dir = (digitalRead(_pinB) == last_A) ? -1 : 1;//B == last_A, т.е B != A - значит по часовой, иначе против часовой 
      _delta += (_is_btn_pressed) ? (dir * _with_btn) : (dir * _without_btn); // Считаем приращение учитываю состояние кнопки
   }//if   
   last_A = enc_A; // Сохраняем текущее значение А
@@ -41,5 +41,5 @@ void Encoder::_on_rotate(){
 
 // Обработчик прерывания по кнопке
 void Encoder::_on_btn(){
-  _is_btn_pressed = digitalRead(_pinBTN);
+  _is_btn_pressed = !digitalRead(_pinBTN);
 }//_on_btn

@@ -15,15 +15,15 @@ class Encoder {
     int32_t getDelta(){int32_t res = _delta; _delta = 0; return res;};
 
   private:
-    static inline volatile uint8_t _pinA; // Пины
-    static inline volatile uint8_t _pinB;
-    static inline volatile uint8_t _pinBTN;
+    static inline volatile uint8_t _pinA = 0; // Пины
+    static inline volatile uint8_t _pinB = 0;
+    static inline volatile uint8_t _pinBTN = 0;
 
-    static inline volatile int32_t _with_btn; // Приращение при нажатой кнопке
-    static inline volatile int32_t _without_btn; // Приращение без нажатой кнопки
+    static inline volatile int32_t _with_btn = 0; // Приращение при нажатой кнопке
+    static inline volatile int32_t _without_btn = 0; // Приращение без нажатой кнопки
 
-    static inline volatile uint8_t _is_btn_pressed; // Флаг нажатой кнопки энкодера
-    static inline volatile int32_t _delta; // Приращение энкодера ("+" - по часовой, "-" - против часовой)
+    static inline volatile uint8_t _is_btn_pressed = 0; // Флаг нажатой кнопки энкодера
+    static inline volatile int32_t _delta = 0; // Приращение энкодера ("+" - по часовой, "-" - против часовой)
 
     // Обработчик прерывания по врещению энкодера
     static void _on_rotate();

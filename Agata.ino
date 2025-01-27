@@ -27,7 +27,8 @@ void setup() {
    Serial.print('*');
    Serial.flush();
   }//for
-
+  
+  Serial.println();
   Serial.print(APP_NAME);
   Serial.print(APP_VER);
   Serial.print(APP_COPYRIGHT);
@@ -39,6 +40,7 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(encL.getDelta());
+  int32_t val = encL.getDelta();
+  if(val) Serial.println(val);
   delay(1000);
 }
