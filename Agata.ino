@@ -37,10 +37,10 @@ void setup() {
 
   // Развешивать обработчики прерываний приходится тут и через лямбду :(
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ENC_L_A), [](){encL.onRotate();}, CHANGE);  
-  attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ENC_L_BTN), [](){encL.onBtn();}, CHANGE);  
+//  attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ENC_L_BTN), [](){encL.onBtn();}, CHANGE);  
 
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ENC_R_A), [](){encR.onRotate();}, CHANGE);  
-  attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ENC_R_BTN), [](){encR.onBtn();}, CHANGE);  
+//  attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ENC_R_BTN), [](){encR.onBtn();}, CHANGE);  
 
 }
 

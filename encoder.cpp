@@ -9,8 +9,6 @@ Encoder::Encoder(const uint8_t pinA, const uint8_t pinB, const uint8_t pinBTN, c
   
   _with_btn = withBtn; // Приращение при нажатой кнопке
   _without_btn = withoutBtn; // Приращение без нажатой кнопки
-  
-  _is_btn_pressed = false; // Флаг нажатой кнопки энкодера
   _delta = 0; // Приращение энкодера ("+" - по часовой, "-" - против часовой)
 
   pinMode(_pinA, INPUT_PULLUP);
@@ -29,13 +27,8 @@ void Encoder::onRotate(){
   flag = !flag; // Кроме первого шага нас интересует каждый второй импульс
   if(flag) {
      int8_t dir = (digitalRead(_pinB) == last_A) ? -1 : 1;//B == last_A, т.е B != A - значит по часовой, иначе против часовой 
-     _delta += (_is_btn_pressed) ? (dir * _with_btn) : (dir * _without_btn); // Считаем приращение учитываю состояние кнопки
+     _delta += (!digitalRead(_pinBTN)) ? (dir * _with_btn) : (dir * _without_btn); // Считаем приращение учитываю состояние кнопки
   }//if   
   last_A = enc_A; // Сохраняем текущее значение А
 }//onRotate
 
-
-// Обработчик прерывания по кнопке
-void Encoder::onBtn(){
-  _is_btn_pressed = !digitalRead(_pinBTN);
-}//onBtn

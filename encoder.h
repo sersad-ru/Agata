@@ -20,9 +20,6 @@ class Encoder {
     // Обработчик прерывания по вращению энкодера 
     void onRotate();
 
-    // Обработчик прерывания по нажатию кнопки
-    void onBtn();
-
   private:
     volatile uint8_t _pinA = 0; // Пины
     volatile uint8_t _pinB = 0;
@@ -31,6 +28,5 @@ class Encoder {
     volatile int32_t _with_btn = 0; // Приращение при нажатой кнопке
     volatile int32_t _without_btn = 0; // Приращение без нажатой кнопки
 
-    volatile uint8_t _is_btn_pressed = 0; // Флаг нажатой кнопки энкодера
     volatile int32_t _delta = 0; // Приращение энкодера ("+" - по часовой, "-" - против часовой)
 };//class
