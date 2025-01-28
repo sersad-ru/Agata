@@ -1,6 +1,5 @@
 #include "Arduino.h"
 #include "encoder.h"
-#include <PinChangeInterrupt.h>
 
 
 Encoder::Encoder(const uint8_t pinA, const uint8_t pinB, const uint8_t pinBTN, const int32_t withBtn, const int32_t withoutBtn){
@@ -17,15 +16,12 @@ Encoder::Encoder(const uint8_t pinA, const uint8_t pinB, const uint8_t pinBTN, c
   pinMode(_pinA, INPUT_PULLUP);
   pinMode(_pinB, INPUT_PULLUP);
   pinMode(_pinBTN, INPUT_PULLUP);
-
-  attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(_pinA), _on_rotate, CHANGE);  
-  attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(_pinBTN), _on_btn, CHANGE);  
 }// Encoder
 
 
 
 // Обработчик прерывания по вращению
-void Encoder::_on_rotate(){
+void Encoder::onRotate(){
   static uint8_t last_A = 0; // Предыдущее состояние выхода А
   static uint8_t flag = 0; // У нас два импульса на один шаг, кроме первого
   uint8_t enc_A = digitalRead(_pinA); // Читаем вход А
@@ -36,10 +32,10 @@ void Encoder::_on_rotate(){
      _delta += (_is_btn_pressed) ? (dir * _with_btn) : (dir * _without_btn); // Считаем приращение учитываю состояние кнопки
   }//if   
   last_A = enc_A; // Сохраняем текущее значение А
-}//_on_rotate
+}//onRotate
 
 
 // Обработчик прерывания по кнопке
-void Encoder::_on_btn(){
+void Encoder::onBtn(){
   _is_btn_pressed = !digitalRead(_pinBTN);
-}//_on_btn
+}//onBtn
