@@ -8,9 +8,20 @@
 
 class Button{
   public:  
-    Button();
+    Button(const uint8_t pin);
     void run(); // Выполнение переодических заданий
     
+    // Получить состояние кнопки и сбросить флаг изменения
+    uint8_t getPresed(){_was_changed = false; return _is_pressed;};
+
+    // Получить состояние кнопки без сброса флага изменения
+    uint8_t checkPressed(){return _is_pressed;};
+
+    // Вернуть флаг измнения состояния
+    uint8_t wasChanged(){return _was_changed;};
+
   private:
-    
+    uint8_t _pin = 0; // Пин
+    uint8_t _is_pressed = false; // Флаг нажатия на кнопку
+    uint8_t _was_changed = false; // Было ли изменено с последнего получения
 }; // class
