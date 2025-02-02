@@ -13,6 +13,11 @@ class Encoder {
   public:    
     Encoder(const uint8_t pinA, const uint8_t pinB, const uint8_t pinBTN, const int32_t withBtn = 1, const int32_t withoutBtn = 10);
 
+    // Установить конфигурацию энкодера. Сбрасывает текущую дельту. 
+    // withBtn - шаг при нажатой кнопке (при вращении по часовой cw), т.е. против часовой будет -withBtn
+    // withoutBtn - шаг при отпущенной (при вращении по часовой cw), т.е. против часовой будет -withoutBtn
+    void setConfig(const int32_t withBtn, const int32_t withoutBtn);
+
     // Вернуть и сбросить изменение с момента последнего чтения
     int32_t getDelta(){int32_t res = _delta; _delta = 0; return res;};
 

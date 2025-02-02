@@ -7,15 +7,20 @@ Encoder::Encoder(const uint8_t pinA, const uint8_t pinB, const uint8_t pinBTN, c
   _pinB = pinB;
   _pinBTN = pinBTN;
   
-  _with_btn = withBtn; // Приращение при нажатой кнопке
-  _without_btn = withoutBtn; // Приращение без нажатой кнопки
-  _delta = 0; // Приращение энкодера ("+" - по часовой, "-" - против часовой)
+  setConfig(withBtn, withoutBtn);
 
   pinMode(_pinA, INPUT_PULLUP);
   pinMode(_pinB, INPUT_PULLUP);
   pinMode(_pinBTN, INPUT_PULLUP);
 }// Encoder
 
+
+// Установить конфигурацию энкодера. Сбрасывает текущую дельту
+void Encoder::setConfig(const int32_t withBtn, const int32_t withoutBtn){
+  _with_btn = withBtn; // Приращение при нажатой кнопке
+  _without_btn = withoutBtn; // Приращение без нажатой кнопки
+  _delta = 0; // Приращение энкодера ("+" - по часовой, "-" - против часовой)
+}//setConfig
 
 
 // Обработчик прерывания по вращению

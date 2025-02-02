@@ -12,7 +12,7 @@ class Button{
     void run(); // Выполнение переодических заданий
     
     // Получить состояние кнопки и сбросить флаг изменения
-    uint8_t getPresed(){_was_changed = false; return _is_pressed;};
+    uint8_t getPressed(){_was_changed = false; return _is_pressed;};
 
     // Получить состояние кнопки без сброса флага изменения
     uint8_t checkPressed(){return _is_pressed;};
