@@ -33,6 +33,11 @@ uint8_t CMD::parseEnc(CMDEnc &enc){
 }//parseEnc
 
 
+// Опытаться определить, что была команда сброса ("F" или "f"). true - и правда была. false - нет
+uint8_t CMD::parseReset(){
+  return (char)tolower(_buf[1]) == 'f';
+}//parseReset
+
 
 // Выполнение переодических действий
 void CMD::run(){
@@ -65,12 +70,15 @@ void CMD::_read_command(){
 
   _has_new_command = true; // Надеемся, что нашли 
   switch(tolower(cmd)){
+    case 'h':
     case '?': _last_command = CMD_HELP; break;    
     case 'i': _last_command = CMD_INFO; break;    
     case '&': _last_command = CMD_RESET; break;    
     case 'l': _last_command = CMD_LEFT; break;    
     case 'r': _last_command = CMD_RIGHT; break;    
     case 'k': _last_command = CMD_KEY; break;    
+    case 's': _last_command = CMD_SWAP; break;    
+    case 'd': _last_command = CMD_DEBUG; break;    
     default: // не нашли
       _last_command = CMD_ERROR;
   }//switch    

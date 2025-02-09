@@ -13,8 +13,12 @@ const char APP_VER_VAL[] PROGMEM = "v1.0"; // Базовая версия
 const char APP_CPY_VAL[] PROGMEM = " (c)2025"; // Годы копирайта
 #define APP_COPYRIGHT FF(APP_CPY_VAL)
 
-const char APP_NAME_VAL[] PROGMEM = "Agata. The splitted mouse. "; // Название приложения
+const char APP_NAME_VAL[] PROGMEM = "Agata"; // Название приложения
 #define APP_NAME FF(APP_NAME_VAL)
+
+const char APP_LONG_NAME_VAL[] PROGMEM = ". The splitted mouse. "; // Длинная часть названия приложения
+#define APP_LONG_NAME FF(APP_LONG_NAME_VAL)
+
 
 const char APP_SERSAD_VAL[] PROGMEM = " by sersad.ru"; // Копирайт
 #define APP_SERSAD FF(APP_SERSAD_VAL)
