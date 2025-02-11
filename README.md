@@ -15,6 +15,7 @@ Back in the 1980's, the famous russian personal computer ["Agat"](http://agatcom
 </p>
 But nowadays independent axis control may be very useful for working with CAD or graphics software. So this simple project brings us back to good old technology.
 
+
 This device has two encoders for independent axis control and six keys. Each key has a latched state, so you don't have to hold them down while operating the encoders.
 
 You can switch between fine and coarse mode by holding encoders key while rotating.
