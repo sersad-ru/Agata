@@ -53,4 +53,6 @@ Available configuration commands are:
 |:---:|:---:|:---|
 |`?` or `h`|none|Get the list of available commands|
 |`i`|none|Get the version information and current configuration|
-|`&`|`F`|Reset the configuration to defaults|
+|`&`|`F`|Reset the configuration to defaults. Example: `&F`|
+|`d`|none|Turn on or off debug messages to the COM-port|
+
