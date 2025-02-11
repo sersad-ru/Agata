@@ -44,3 +44,11 @@ This device emulates a HID keyboard and HID mouse. When you rotate the encoder, 
 If you hold the encoder key while rotating, the mouse pointer will move slowly.
 
 Pressing one of the six additional keys will send a `KeyDown` event. Pressing it again will send a `KeyUp` event. So you don't need to hold these buttons down.
+
+In addition to emulating HID devices, Agata also sends and receives messages via a COM port. You can connect to it using any COM terminal program. Port specification: `9600 8N1`. This connection can be used to configure devise settings.
+
+Available configuration commands are:
+
+|Command|Params|Description|
+|:---:|:---:|:---|
+|`?` or `h`|none|Get the list of available commands|
