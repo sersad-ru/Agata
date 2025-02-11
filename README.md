@@ -1,6 +1,8 @@
 # Agata
 Agata. The splitted mouse.
 
+** Main Image **
+
 ## Table of contents
 * [Overview](#overview)
 * [Hardware](#hardware)
@@ -33,3 +35,12 @@ The device is based on:
 
 <p align="center"><img src="img/schematic.png"/>
 
+** Image without case **
+
+
+## Software
+This device emulates a HID keyboard and HID mouse. When you rotate the encoder, the mouse pointer moves along the selected axis. The X axis for the `left` encoder and the Y axis for the `right` encoder by default.
+
+If you hold the encoder key while rotating, the mouse pointer will move slowly.
+
+Pressing one of the six additional keys will send a `KeyDown` event. Pressing it again will send a `KeyUp` event. So you don't need to hold these buttons down.
