@@ -28,7 +28,7 @@ The devise implements HID protocol and needs no drivers for your OS.
 The device is based on:
 *  `Arduino Pro Micro ATMega32U4` 
 *  Two encoders `EC-11`
-*  Six latches `8.5x8.5 mm`
+*  Six latch-switches `8.5x8.5 mm`
 *  12 capacitors to prevent the chatter. `0.1uF`
 
 <p align="center"><img src="img/schematic.png"/>
