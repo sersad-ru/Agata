@@ -52,3 +52,5 @@ Available configuration commands are:
 |Command|Params|Description|
 |:---:|:---:|:---|
 |`?` or `h`|none|Get the list of available commands|
+|`i`|none|Get the version information and current configuration|
+|`&`|`F`|Reset the configuration to defaults|
