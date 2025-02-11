@@ -26,7 +26,7 @@
 // A-пины
 #define A0 A0
 #define A1 A1
-#define A2 a2
+#define A2 A2
 #define A3 A3
 #define A6 A6
 #define A7 A7
