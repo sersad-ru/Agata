@@ -39,7 +39,7 @@ The device is based on:
 
 
 ## Software
-This device emulates a HID keyboard and HID mouse. When you rotate the encoder, the mouse pointer moves along the selected axis. The X axis for the `left` encoder and the Y axis for the `right` encoder by default.
+This device emulates a HID keyboard and HID mouse. When you rotate the encoder, the mouse pointer moves along the selected axis. The `X axis` for the `left` encoder and the `Y axis` for the `right` encoder by default.
 
 If you hold the encoder key while rotating, the mouse pointer will move slowly.
 
