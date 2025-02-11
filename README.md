@@ -35,7 +35,7 @@ The device is based on:
 
 <p align="center"><img src="img/schematic.png"/>
 
-** Image without case **
+<p align="center"><img src="img/without-case.jpg"/>
 
 
 ## Software
