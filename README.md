@@ -27,5 +27,5 @@ The devise implements HID protocol and needs no drivers for your OS.
 ## Hardware
 The device is based on the `Arduino Pro Micro 32U` with two encoders, six latches and 12 capacitors to prevent the chatter.
 
-<p align="center"><img src="img/schematic.jpg"/>
+<p align="center"><img src="img/schematic.png"/>
 
