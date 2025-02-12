@@ -55,4 +55,9 @@ Available configuration commands are:
 |`i`|none|Get the version information and current configuration|
 |`&`|`F`|Reset the configuration to defaults. Example: `&F`|
 |`d`|none|Turn on or off debug messages to the COM-port|
+|`s`|none|Swap `left` and `right` encoders.|
+|`k`|`X=C`|Assign the code `C` to the `X` key. Example: `k2=0x02`. See [List of available codes](#List-of-available-codes)|
+
+
+### List of available codes
 
