@@ -39,7 +39,7 @@ The device is based on:
 
 
 ## Software
-This device emulates a HID keyboard and HID mouse. When you rotate the encoder, the mouse pointer moves along the selected axis. The `X axis` for the `left` encoder and the `Y axis` for the `right` encoder by default.
+This device emulates a HID keyboard and HID mouse. When you rotate the encoder, the mouse pointer moves along the selected axis. The `X axis` for the `right` encoder and the `Y axis` for the `left` encoder by default.
 
 If you hold the encoder key while rotating, the mouse pointer will move slowly.
 
@@ -57,8 +57,8 @@ Available configuration commands are:
 |`d`|none|Turn on or off debug messages to the COM-port|
 |`s`|none|Swap `left` and `right` encoders.|
 |`k`|`X=C`|Assign the code `C` to the `X` key. Example: `k2=0x02`. See [List of available codes](#List-of-available-codes)|
-|`l`|`A, B`|Set the `left` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `l=1,10` *The `Left` encoder will increase the `x-coordinate` by **1** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **10** in `coarse` mode (when the encoder button is released).*|
-|`r`|`A, B`|Set the `right` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `r=-5,-50` *The `Right` encoder will **decrease** the `y-coordinate` by **5** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **50** in `coarse` mode (when the encoder button is released).*|
+|`l`|`A, B`|Set the `left` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `l=1,10` *The `Left` encoder will increase the `y-coordinate` by **1** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **10** in `coarse` mode (when the encoder button is released).*|
+|`r`|`A, B`|Set the `right` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `r=-5,-50` *The `Right` encoder will **decrease** the `x-coordinate` by **5** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **50** in `coarse` mode (when the encoder button is released).*|
 
 
 ### List of available codes
