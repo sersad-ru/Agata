@@ -76,3 +76,6 @@ Available configuration commands are:
 |KEY_RIGHT_SHIFT|133|0x85|
 |KEY_RIGHT_ALT|134|0x86|
 |KEY_RIGHT_GUI|135|0x87|
+
+
+## History
