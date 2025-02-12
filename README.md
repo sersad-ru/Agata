@@ -56,7 +56,7 @@ Available configuration commands are:
 |`&`|`F`|Reset the configuration to defaults. Example: `&F`|
 |`d`|none|Turn on or off debug messages to the COM-port|
 |`s`|none|Swap `left` and `right` encoders.|
-|`k`|`X=C`|Assign the code `C` to the `X` key. Example: `k1=0x02`. The code **0x02** will be assigned to the key **1**. See [List of available codes](#List-of-available-codes)|
+|`k`|`X=C`|Assign the code `C` to the `X` key. Example: `k1=0x02`. The code **0x02** will be assigned to the key **1**. See [List of available codes](#List-of-available-codes) for details.|
 |`l`|`A, B`|Set the `left` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `l=1,10` *The `Left` encoder will increase the `y-coordinate` by **1** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **10** in `coarse` mode (when the encoder button is released).*|
 |`r`|`A, B`|Set the `right` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `r=-5,-50` *The `Right` encoder will **decrease** the `x-coordinate` by **5** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **50** in `coarse` mode (when the encoder button is released).*|
 
