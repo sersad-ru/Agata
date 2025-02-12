@@ -1,7 +1,7 @@
 # Agata
 Agata. The splitted mouse.
 
-** Main Image **
+**Main Image**
 
 ## Table of contents
 * [Overview](#overview)
