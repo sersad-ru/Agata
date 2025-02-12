@@ -58,7 +58,7 @@ Available configuration commands are:
 |`s`|none|Swap `left` and `right` encoders.|
 |`k`|`X=C`|Assign the code `C` to the `X` key. Example: `k2=0x02`. See [List of available codes](#List-of-available-codes)|
 |`l`|`A, B`|Set the `left` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `l=1,10` *The `Left` encoder will increase the `x-coordinate` by **1** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **10** in `coarse` mode (when the encoder button is released).*|
-|`r`|`A, B`|Set the `right` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `r=-5,-50` *The `Right` encoder will decrease the `y-coordinate` by **5** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **50** in `coarse` mode (when the encoder button is released).|
+|`r`|`A, B`|Set the `right` encoder resolution. `A` - increment of axis in `fine` mode, `B` - increment of axis in `coarse` mode. Example: `r=-5,-50` *The `Right` encoder will **decrease** the `y-coordinate` by **5** each step of clockwise rotation in `fine mode` (when the encoder button is pressed) and by **50** in `coarse` mode (when the encoder button is released).|
 
 
 ### List of available codes
