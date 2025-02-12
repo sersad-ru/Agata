@@ -65,7 +65,7 @@ Available configuration commands are:
 
 |Command|DEC|HEX|
 |:---|:---:|:---:|
-|MOUSE_LEFT|1|0x01|
+|`MOUSE_LEFT`|1|0x01|
 |MOUSE_RIGHT|2|0x02|
 |MOUSE_MIDDLE|4|0x04|
 |KEY_LEFT_CTRL|128|0x80|
