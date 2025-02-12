@@ -63,3 +63,8 @@ Available configuration commands are:
 
 ### List of available codes
 
+|Command|DEC|HEX|
+|:---:|:---:|:---:|
+|MOUSE_LEFT|1|0x01|
+|MOUSE_RIGHT|2|0x02|
+|MOUSE_MIDDLE|4|0x04|
