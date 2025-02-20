@@ -5,16 +5,16 @@
 #include "version.h"
 
 
-const char KEY_VAL[] PROGMEM = "Key[";
+const char KEY_VAL[] PROGMEM = "Key_";
 #define KEY_NAME FF(KEY_VAL)
 
 const char MOUSE_VAL[] PROGMEM = "Mouse";
 #define MOUSE_NAME FF(MOUSE_VAL)
 
-const char PRESS_VAL[] PROGMEM = " press: ";
+const char PRESS_VAL[] PROGMEM = " DOWN\t";
 #define PRESS_NAME FF(PRESS_VAL)
 
-const char RELEASE_VAL[] PROGMEM = " release: ";
+const char RELEASE_VAL[] PROGMEM = " UP\t";
 #define RELEASE_NAME FF(RELEASE_VAL)
 
 const char CFG_SAVED_VAL[] PROGMEM = "Config saved.";
@@ -87,7 +87,7 @@ void App::_doKey(const uint8_t btn_ind, const uint8_t is_pressed){
     else Keyboard.release(_cfg -> buttons[btn_ind]);
   if(!_dbg) return; // Не выводить отладочные сообщения 
   if(!Serial.availableForWrite()) return; // Некуда писать
-  ssMultiPrint(Serial, KEY_NAME, btn_ind, ']', (is_pressed) ? PRESS_NAME : RELEASE_NAME);
+  ssMultiPrint(Serial, KEY_NAME, btn_ind, (is_pressed) ? PRESS_NAME : RELEASE_NAME);
   Codes::printlnCode(Serial, _cfg -> buttons[btn_ind]);
 }//_doKey
 
@@ -96,6 +96,9 @@ void App::_doKey(const uint8_t btn_ind, const uint8_t is_pressed){
 void App::_processCommands(){
   _cmd -> run();
   if(!_cmd -> hasNewCommand()) return; // Нету новых команд
+  CMDKey key; // Настройки кнопки
+  uint8_t key_num; // Номер кнопки для инверсии
+
   switch(_cmd -> getLastCommand()){
     case CMD_DEBUG:  // Переключение вывода в порт отладочных сообщений
       _dbg = !_dbg;
@@ -107,19 +110,21 @@ void App::_processCommands(){
       ssMultiPrintln(Serial, APP_BUILD_ID, BUILD_ID, "\n");
       cfg_print(Serial, *_cfg);
       ssMultiPrintln(Serial, F("Debug mode: "), (_dbg) ? F("ON") : F("OFF"));
+      Serial.println(F("Use \"h\"\t- for help."));
       Serial.println();
     break;
 
     case CMD_HELP: // Вывести справку по командам
       Serial.println(F("--- HELP ---"));
-      Serial.println(F("? | h\t- this help"));
-      Serial.println(F("i\t- show version, build number and current config"));
+      Serial.println(F("h\t- this help"));
+      Serial.println(F("?\t- show version, build number and current config"));
       Serial.println(F("&F\t- reset to system defaults and save config"));
       Serial.println(F("s\t- swap left and right encoders and save config"));
       Serial.println(F("d\t- turn on / off debug mode"));
-      Serial.println(F("l=A,B\t- left encoder settings.  A - fine increment, B - coarse increment. \"l=1,10\" - for CW rotation increment"));
-      Serial.println(F("r=A,B\t- right encoder settings. A - fine increment, B - coarse increment. \"r=-5,-50\" - for CCW rotation increment"));
-      ssMultiPrintln(Serial, F("kN=C\t- key settings. N - key number [0.."), BTN_COUNT - 1, F("], C - key code. \"k0=0x02\" - for MOUSE_RIGHT on key 0"));
+      Serial.println(F("l=A,B\t- left encoder settings:  A - fine increment, B - coarse increment. \"l=1,10\" - for CW rotation increment"));
+      Serial.println(F("r=A,B\t- right encoder settings: A - fine increment, B - coarse increment. \"r=-5,-50\" - for CCW rotation increment"));
+      ssMultiPrintln(Serial, F("iN\t- invert key status (pressed/released): N - key number [0.."), BTN_COUNT - 1, F("], \"i0\" - to invert key 0 (\""), KEY_INVERSE_NAME, F("\" in key status)"));      
+      ssMultiPrintln(Serial, F("kN=C\t- key settings: N - key number [0.."), BTN_COUNT - 1, F("], C - key code. \"k0=0x02\" - for MOUSE_RIGHT on key 0"));
       Codes::printCodeList(Serial);
       Serial.println(F("--- --- ---"));
     break;
@@ -143,13 +148,12 @@ void App::_processCommands(){
     break;
 
     case CMD_KEY: // Настройка кнопки
-      CMDKey key;
       if(!_cmd -> parseKey(key)){ // Неудалось разобрать команду
         ssMultiPrintln(Serial, ERROR_IN_CMD_NAME, (char*)(_cmd -> getLastArgs() - 1), "\""); 
         break;  
       }//if 
       if(key.num > BTN_COUNT - 1){ // Тот ли номер кнопки
-        ssMultiPrintln(Serial, F("*** Error: Illegal key number: "), key.num, F(" (not in [1.."), BTN_COUNT - 1, F("]) in command \""), (char*)(_cmd -> getLastArgs() - 1), "\""); 
+        _printIllegalKeyNum(key.num);      
         break;
       }//if
       if(!Codes::checkCode(key.val)){ // То ли значение кнопки
@@ -158,8 +162,23 @@ void App::_processCommands(){
         break; 
       }//if
       _cfg -> buttons[key.num] = key.val;
-      ssMultiPrint(Serial, KEY_CODE_NAME, "[", key.num, "]: ");
+      ssMultiPrint(Serial, _cfg -> inverse[key.num] ? KEY_INVERSE_NAME : KEY_NO_INVERSE_NAME, KEY_CODE_NAME, "_", key.num, ": ");
       Codes::printlnCode(Serial, key.val);
+      cfg_save(*_cfg); //сохраняем значения
+      Serial.println(CFG_SAVED_NAME);
+    break;
+
+    case CMD_INVERSE: // Инверсия состояния кнопки
+      if(!_cmd -> parseInverse(key_num)){ // Неудалось разобрать команду
+        ssMultiPrintln(Serial, ERROR_IN_CMD_NAME, (char*)(_cmd -> getLastArgs() - 1), "\""); 
+        break;  
+      }//if 
+      if(key_num > BTN_COUNT - 1){ // Тот ли номер кнопки
+        _printIllegalKeyNum(key_num);
+        break;
+      }//if
+      _cfg -> inverse[key_num] = !_cfg -> inverse[key_num];
+      ssMultiPrintln(Serial, KEY_CODE_NAME, "_", key.num, F(" is"), _cfg -> inverse[key_num] ? F(" ") : F(" not "), F("inverted."));
       cfg_save(*_cfg); //сохраняем значения
       Serial.println(CFG_SAVED_NAME);
     break;
@@ -195,3 +214,9 @@ void App::_doEnc(Encoder* _enc, int32_t* with, int32_t* without){
   cfg_save(*_cfg); //сохраняем значения
   Serial.println(CFG_SAVED_NAME);
 }//_doEnc
+
+
+// Вывести ошибку номера кнопки
+void App::_printIllegalKeyNum(const uint8_t num){
+  ssMultiPrintln(Serial, F("*** Error: Illegal key number: "), num, F(" (not in [1.."), BTN_COUNT - 1, F("]) in command \""), (char*)(_cmd -> getLastArgs() - 1), "\""); 
+}//_printIllegalKeyNumb

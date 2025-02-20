@@ -39,6 +39,13 @@ uint8_t CMD::parseReset(){
 }//parseReset
 
 
+// Попытаться разобрать инвертирования кнопки. true - удалось, false - нет.
+uint8_t CMD::parseInverse(uint8_t &key_num){
+  if(sscanf((char*)(_buf + 1), "%hhu", &key_num) == 1) return true;
+  return false;
+}//parseInverse
+
+
 // Выполнение переодических действий
 void CMD::run(){
   _read_command();
@@ -69,16 +76,16 @@ void CMD::_read_command(){
   char cmd = (char)_buf[0]; // Команда
 
   _has_new_command = true; // Надеемся, что нашли 
-  switch(tolower(cmd)){
-    case 'h':
-    case '?': _last_command = CMD_HELP; break;    
-    case 'i': _last_command = CMD_INFO; break;    
+  switch(tolower(cmd)){    
+    case 'h': _last_command = CMD_HELP; break;    
+    case '?': _last_command = CMD_INFO; break;    
     case '&': _last_command = CMD_RESET; break;    
     case 'l': _last_command = CMD_LEFT; break;    
     case 'r': _last_command = CMD_RIGHT; break;    
     case 'k': _last_command = CMD_KEY; break;    
     case 's': _last_command = CMD_SWAP; break;    
     case 'd': _last_command = CMD_DEBUG; break;    
+    case 'i': _last_command = CMD_INVERSE; break;    
     default: // не нашли
       _last_command = CMD_ERROR;
   }//switch    

@@ -37,6 +37,7 @@ void cfg_reset(flashcfg &cfg) {
   cfg.buttons[3] = KEY_CODE_3_DEFAULT;  
   cfg.buttons[4] = KEY_CODE_4_DEFAULT;  
   cfg.buttons[5] = KEY_CODE_5_DEFAULT;  
+  for(uint8_t i = 0; i < BTN_COUNT; i++) cfg.inverse[i] = KEY_INVERSE_DEFAULT;
 
   cfg.noValue = 0;//Выставляем флаг, что данные установлены
   cfg_save(cfg); //сохраняем значения
@@ -53,7 +54,7 @@ void cfg_print(Print &p, flashcfg &cfg){
   ssMultiPrintln(p, ENC_R_NAME, ENC_NAME, ENC_WITHOUT_NAME, cfg.encRwithout);
   
   for(uint8_t i = 0; i < BTN_COUNT; i++){
-       ssMultiPrint(p, KEY_CODE_NAME, "[", i, "]: ");
-       Codes::printlnCode(p, cfg.buttons[i]);
+    ssMultiPrint(p, cfg.inverse[i] ? KEY_INVERSE_NAME : KEY_NO_INVERSE_NAME, KEY_CODE_NAME, "_", i, ": "); 
+    Codes::printlnCode(p, cfg.buttons[i]);
   }//for
 }//cfg_print

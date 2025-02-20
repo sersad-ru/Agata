@@ -29,4 +29,5 @@ class App{
     void _doMouse(const uint8_t btn_ind, const uint8_t is_pressed); // Отработка мыши
     void _doKey(const uint8_t btn_ind, const uint8_t is_pressed); // Отработка кнопок
     void _doEnc(Encoder*_enc, int32_t* with, int32_t* without); // Поменять настройки энкодера 
+    void _printIllegalKeyNum(const uint8_t num); // Вывести ошибку номера кнопки
 }; // class

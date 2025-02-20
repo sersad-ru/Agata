@@ -2,6 +2,7 @@
 * Agata
 * v 1.0
 * (c)25.01.2025 by sersad
+* 20.02.2025
 */
 
 /*
@@ -21,15 +22,20 @@
 
 #define arraySize(_array) ( sizeof(_array) / sizeof(*(_array)) )
 
+// Конфиг
+flashcfg cfg;
+
 // Энкодеры
 Encoder encL = Encoder(ENC_L_A, ENC_L_B, ENC_L_BTN, ENC_L_WITH_DEFAULT, ENC_L_WITHOUT_DEFAULT);
 Encoder encR = Encoder(ENC_R_A, ENC_R_B, ENC_R_BTN, ENC_R_WITH_DEFAULT, ENC_R_WITHOUT_DEFAULT);
 
 // Кнопки
-Button buttons[BTN_COUNT] = {Button(KEY_1), Button(KEY_2), Button(KEY_3), Button(KEY_4), Button(KEY_5), Button(KEY_6)};
-
-// Конфиг
-flashcfg cfg;
+Button buttons[BTN_COUNT] = { Button(KEY_1, &cfg.inverse[0]), 
+                              Button(KEY_2, &cfg.inverse[1]), 
+                              Button(KEY_3, &cfg.inverse[2]), 
+                              Button(KEY_4, &cfg.inverse[3]), 
+                              Button(KEY_5, &cfg.inverse[4]), 
+                              Button(KEY_6, &cfg.inverse[5])};
 
 // Командный интерфейс
 CMD cmd = CMD(Serial);
