@@ -1,5 +1,5 @@
 # Agata
-Agata. The splitted mouse.
+<p align="center"><img src="img/logo.jpg" width="300"/>
 
 <p align="center"><img src="img/main.jpg" width="300"/><br>
 
