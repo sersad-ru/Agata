@@ -1,7 +1,7 @@
 # Agata
 Agata. The splitted mouse.
 
-**Main Image**
+<p align="center"><img src="img/main.jpg"/><br>
 
 ## Table of contents
 * [Overview](#overview)
