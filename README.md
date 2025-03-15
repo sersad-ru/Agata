@@ -1,7 +1,7 @@
 # Agata
 Agata. The splitted mouse.
 
-<p align="center"><img src="img/main.jpg"/><br>
+<p align="center"><img src="img/main.jpg" width="300"/><br>
 
 ## Table of contents
 * [Overview](#overview)
@@ -80,3 +80,4 @@ Available configuration commands are:
 
 
 ## History
+* 1.0 - First stable release. 2025-03-16.
