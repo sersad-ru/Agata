@@ -1,7 +1,6 @@
 # Agata
-<p align="center"><img src="img/logo.jpg" width="300"/></p>
-
-<p align="center"><img src="img/main.jpg" width="400"/><br>
+<p align="center"><img src="img/logo.jpg" width="300"/><br>
+<img src="img/main.jpg" width="400"/></p>
 
 ## Table of contents
 * [Overview](#overview)
