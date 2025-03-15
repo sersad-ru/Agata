@@ -33,9 +33,9 @@ The device is based on:
 *  Six latch-switches `8.5x8.5 mm`
 *  12 capacitors to prevent the chatter. `0.1uF`
 
-<p align="center"><img src="img/schematic.png"/>
+<p align="center"><img src="img/schematic.png"/></p>
 
-<p align="center"><img src="img/without-case.jpg" width="300"/>
+<p align="center"><img src="img/without-case.jpg" width="300"/><img src="img/back.jpg" width="300"/></p>
 
 
 ## Software
