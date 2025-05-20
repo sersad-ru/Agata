@@ -68,17 +68,21 @@ void setup() {
    if(Serial.availableForWrite()) Serial.print('*');
    Serial.flush();
   }//for
-  ssMultiPrintln(Serial, "\n", APP_NAME, APP_LONG_NAME, APP_VER, APP_COPYRIGHT, APP_SERSAD);
-  ssMultiPrintln(Serial, APP_BUILD_ID, BUILD_ID);
+  if(Serial.availableForWrite()){
+    ssMultiPrintln(Serial, "\n", APP_NAME, APP_LONG_NAME, APP_VER, APP_COPYRIGHT, APP_SERSAD);
+    ssMultiPrintln(Serial, APP_BUILD_ID, BUILD_ID);
+  }//if
 
   cfg_init(cfg); // Инициализируем конфиг (значения по умолчанию ставятся там же - в flashcfg.cpp
-  Serial.println(F("\nConfig loaded."));
+  if(Serial.availableForWrite()) Serial.println(F("\nConfig loaded."));
 #ifdef RESET_FLASH_CFG
   cfg_reset(cfg); //Принудительно сбрасываем значения
-  Serial.println(F("\nConfig reseted."));
+  if(Serial.availableForWrite()) Serial.println(F("\nConfig reseted."));
 #endif
-  if(Serial.availableForWrite()) cfg_print(Serial, cfg);
-  Serial.println();
+  if(Serial.availableForWrite()){
+    cfg_print(Serial, cfg);
+    Serial.println();
+  }//if
 
   // Настраиваем энкодеры
   encL.setConfig(cfg.encLwith, cfg.encLwithout);
@@ -88,7 +92,7 @@ void setup() {
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ENC_L_A), [](){encL.onRotate();}, CHANGE);  
   attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(ENC_R_A), [](){encR.onRotate();}, CHANGE);  
 
-  ssMultiPrintln(Serial, APP_NAME, F(" is ready."));  
+  if(Serial.availableForWrite()) ssMultiPrintln(Serial, APP_NAME, F(" is ready."));  
 }// setup
 
 
