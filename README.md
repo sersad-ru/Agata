@@ -21,7 +21,7 @@ This device has two encoders for independent axis control and six keys. Each key
 
 You can switch between fine and coarse mode by holding encoders key while rotating.
 
-The devise implements HID protocol and needs no drivers for your OS.
+The device implements HID protocol and needs no drivers for your OS.
 
 
 
